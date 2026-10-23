@@ -23,10 +23,20 @@ const FPS = 30;
 const PHOTO_FRAMES = 5 * FPS;
 const INTRO_FRAMES = 5 * FPS;
 const OUTRO_FRAMES = 5 * FPS;
+const FINALE_FRAMES = 7 * FPS;
 const FADE_FRAMES = Math.round(1.2 * FPS);
 
+const photoFrames = (index: number, count: number) =>
+  index === count - 1 ? FINALE_FRAMES : PHOTO_FRAMES;
+
 export const totalDuration = (count: number) =>
-  INTRO_FRAMES + count * PHOTO_FRAMES + OUTRO_FRAMES - (count + 1) * FADE_FRAMES;
+  INTRO_FRAMES +
+  Array.from({length: count}, (_, i) => photoFrames(i, count)).reduce((a, b) => a + b, 0) +
+  OUTRO_FRAMES -
+  (count + 1) * FADE_FRAMES;
+
+// The last photo is the group shot: barely move, so nobody at the edges is cropped.
+const FINALE_MOVE = {fromScale: 1.0, toScale: 1.05, fromX: 0, toX: 0, fromY: 0, toY: 0};
 
 // Each photo gets its own slow camera move so consecutive shots never feel the same.
 const MOVES = [
@@ -37,13 +47,14 @@ const MOVES = [
   {fromScale: 1.04, toScale: 1.13, fromX: -2, toX: 2, fromY: 1, toY: -2},
 ];
 
-const KenBurns: React.FC<{photo: Photo; index: number; duration: number}> = ({
-  photo,
-  index,
-  duration,
-}) => {
+const KenBurns: React.FC<{
+  photo: Photo;
+  index: number;
+  duration: number;
+  finale: boolean;
+}> = ({photo, index, duration, finale}) => {
   const frame = useCurrentFrame();
-  const move = MOVES[index % MOVES.length];
+  const move = finale ? FINALE_MOVE : MOVES[index % MOVES.length];
   const t = interpolate(frame, [0, duration], [0, 1], {
     easing: Easing.inOut(Easing.sin),
     extrapolateRight: 'clamp',
@@ -93,6 +104,7 @@ const KenBurns: React.FC<{photo: Photo; index: number; duration: number}> = ({
           width: '100%',
           height: '100%',
           objectFit: 'cover',
+          objectPosition: finale ? 'center 70%' : 'center',
           transform: `scale(${scale}) translate(${x}%, ${y}%)`,
         }}
       />
@@ -221,8 +233,16 @@ export const LisbonClip: React.FC = () => {
             presentation={fade()}
             timing={linearTiming({durationInFrames: FADE_FRAMES})}
           />,
-          <TransitionSeries.Sequence key={photo.file} durationInFrames={PHOTO_FRAMES}>
-            <KenBurns photo={photo} index={i} duration={PHOTO_FRAMES} />
+          <TransitionSeries.Sequence
+            key={photo.file}
+            durationInFrames={photoFrames(i, photos.length)}
+          >
+            <KenBurns
+              photo={photo}
+              index={i}
+              duration={photoFrames(i, photos.length)}
+              finale={i === photos.length - 1}
+            />
             <Grade />
           </TransitionSeries.Sequence>,
         ])}

@@ -1,5 +1,6 @@
 // Normalizes raw photos into public/photos and writes src/photos.json.
-// Usage: node scripts/prepare-photos.mjs <raw-photos-dir>
+// Usage: node scripts/prepare-photos.mjs <raw-photos-dir> [--by-name]
+// --by-name keeps filename order instead of sorting by capture time.
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
@@ -39,6 +40,10 @@ for (const file of files) {
   console.log(`${file} -> ${name} (${info.width}x${info.height})`);
 }
 
-photos.sort((a, b) => a.takenAt - b.takenAt);
+if (process.argv.includes('--by-name')) {
+  photos.sort((a, b) => a.file.localeCompare(b.file));
+} else {
+  photos.sort((a, b) => a.takenAt - b.takenAt);
+}
 fs.writeFileSync('src/photos.json', JSON.stringify(photos, null, 2));
 console.log(`\n${photos.length} photos ready`);

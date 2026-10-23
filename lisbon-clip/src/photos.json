@@ -1,1 +1,92 @@
-[]
+[
+  {
+    "file": "photos/01_3cbf7853.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508363.2266
+  },
+  {
+    "file": "photos/02_ad668b19.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508366.291
+  },
+  {
+    "file": "photos/03_8da889ee.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508369.2954
+  },
+  {
+    "file": "photos/04_76a6877b.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508372.9863
+  },
+  {
+    "file": "photos/05_e5215602.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508376.0474
+  },
+  {
+    "file": "photos/06_b8fb3fbb.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508379.1494
+  },
+  {
+    "file": "photos/07_2b2230ee.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508382.186
+  },
+  {
+    "file": "photos/08_1e98f576.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508385.6074
+  },
+  {
+    "file": "photos/09_f4b1c4c9.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508390.0178
+  },
+  {
+    "file": "photos/10_c7cc051b.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508393.2373
+  },
+  {
+    "file": "photos/11_cd87fe5d.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508396.2346
+  },
+  {
+    "file": "photos/12_39455829.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508399.318
+  },
+  {
+    "file": "photos/13_d54b769f.jpg",
+    "width": 1512,
+    "height": 2016,
+    "takenAt": 1792778508402.9841
+  },
+  {
+    "file": "photos/14_ce81528c.jpg",
+    "width": 1512,
+    "height": 2016,
+    "takenAt": 1792778508406.832
+  },
+  {
+    "file": "photos/15_5986af01.jpg",
+    "width": 2016,
+    "height": 1512,
+    "takenAt": 1792778508410.1353
+  }
+]
