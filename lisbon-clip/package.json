@@ -1,0 +1,23 @@
+{
+  "name": "lisbon-clip",
+  "private": true,
+  "scripts": {
+    "prepare-photos": "node scripts/prepare-photos.mjs",
+    "studio": "remotion studio",
+    "render": "remotion render LisbonClip out/lisbon.mp4 --codec=h264 --crf=16"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.538",
+    "@remotion/google-fonts": "4.0.538",
+    "@remotion/transitions": "4.0.538",
+    "exif-reader": "^2.0.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.538",
+    "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  }
+}
